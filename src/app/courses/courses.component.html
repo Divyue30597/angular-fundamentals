@@ -1,0 +1,8 @@
+<h1>{{ courses.length + ' Courses Offered' }}</h1>
+<ul *ngFor="let course of courses">
+    <li>{{ course }}</li>
+</ul>
+<div>
+    <!-- Angular translates these interpolations  -->
+    <img src="{{ imageUrl }}" />    
+</div>
