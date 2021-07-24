@@ -3,6 +3,84 @@
     <li>{{ course }}</li>
 </ul>
 <div>
-    <!-- Angular translates these interpolations  -->
-    <img src="{{ imageUrl }}" />    
+    <!-- Angular translates these string interpolations into property bindings.
+    With property binding we bind property of the DOM element, like src here, 
+    to a field or a property in our component  -->
+
+    <img src="{{ imageUrl }}" />
+    <!-- String interpolation can be used when we need 
+    to render a paragraphs, headings, divs and spans so basically words -->
+
+    <img [src] ="imageUrl" /> 
+    <!-- Property bindings works only one way from component to DOM. i.e, if 
+    there is any changes in the component, the DOM will be affected but not the other way.
+    
+    When using property binding. You should remember that you're actually
+    binding to a property of a DOM object, and not an attribute of an HTML
+    element. -->
+    
+    <table>
+        <tr>
+            <!-- <td [colspan]="colspan"></td>
+            Can't bind to 'colspan' since it isn't a known property of 'td'. - Error
+            
+            DOM is model of objects that represent the structure of Document (Tree of objects in memory) 
+            While HTML is a mark up language that we use to represent DOM in text. 
+            Most of the attributs of HTML elements "src", have one to one mapping for properties 
+            of DOM objects. There are few attributs which dont have a representation in the DOM.
+            Eg. colspan. So when we parse this HTML markup, and create an actual DOM object for this
+            td, that DOM object does not have a property called colspan, and that's why 
+            we get this error. So colspan isn't a known property of td. -->
+            <td [attr.colspan]="colspan"></td>
+        </tr>
+    </table>
+    <div>
+            <button class="btn btn-primary m-2">Hello World</button>
+    </div>
+
+    <!-- Class Binding -->
+    <div>
+        <button class="btn btn-primary m-2" [class.active]="isActive">Class Binding. Check Console</button>
+    </div>
+    <!-- Style Binding -->
+    <div>
+        <button class="btn m-2" [style.backgroundColor]="isActive ? 'green' : 'blue'">Style Binding. Check Console</button>
+    </div>
+
+    <!-- Event Binding - Use to handle events raised from the DOM, like keystrokes
+    Mouse movements, position etc. 
+
+    Sometimes we need to get access to the event object that was raised 
+    in the event handler. For example with mouse movements, the event object 
+    will tell us the x and y position, if you want to get access to that 
+    event object, we need to add that as a parameter here -->
+    
+    <div (click)="onDivClick()">
+        <button class="btn btn-danger m-2" (click)="onSave($event)">Click</button>
+    </div>
+
+    <!-- Event Filtering -->
+    <div class="m-2">
+        <input #name (keyup.enter)="onKeyUp(name.value)" />
+    </div>
+    
+    <!-- Two way binding - Component to template and vice versa-->
+    <div class="m-2">
+        <input [(ngModel)]="email" (keyup.enter)="onKeyUp2()" />
+    </div>
+    
+    <!-- Pipes -->
+    <div>
+        <p>{{ course.title | uppercase }}</p>
+        <p>{{ course.rating | number:'1.2-2'  }}</p>
+        <p>{{ course.rating | number:'1.1-1'  }}</p>
+        <p>{{ course.rating | number:'1.1-2'  }}</p>
+        <p>{{ course.rating | number:'2.1-1'  }}</p>
+        <p>{{ course.student | number }}</p>
+        <p>{{ course.price | currency:'AUD':true:'3.2-2' }}</p>
+        <p>{{ course.releaseDate | date:'shortDate' }}</p>
+    </div>
+
+    <!-- Custom Pipes -->
+    {{ text | summary:10 }}
 </div>
