@@ -6,43 +6,36 @@
     Attribute directives - modify the attributes of DOM elements.
  -->
 <h2>First Scenario</h2>
-<div *ngIf = "courses1.length > 0" class="m-2">
-    <!-- here we want to change or modify the structure of our DOM.
+<div *ngIf="courses1.length > 0" class="m-2">
+  <!-- here we want to change or modify the structure of our DOM.
          We want to add or remove one DOM another. 
     -->
-    <h3>List of Courses</h3>
+  <h3>List of Courses</h3>
 </div>
-<div *ngIf = "courses1.length == 0" class="m-2">
-    <h3>
-        No courses.
-    </h3>
+<div *ngIf="courses1.length == 0" class="m-2">
+  <h3>No courses.</h3>
 </div>
 
 <h2>Second Scenario</h2>
 
-<div *ngIf = "courses2.length > 0; else noCourses" class="m-2">
-    <h3>
-        List of courses.
-    </h3>
+<div *ngIf="courses2.length > 0; else noCourses" class="m-2">
+  <h3>List of courses.</h3>
 </div>
 <ng-template #noCourses>
-    <h3>
-        No Courses
-    </h3>
+  <h3>No Courses</h3>
 </ng-template>
 
 <h3><code>Third Scenario</code></h3>
-<div class="m-2" *ngIf = "courses3.length > 0; then courseList else noCourses"></div>
+<div
+  class="m-2"
+  *ngIf="courses3.length > 0; then courseList; else noCourses"
+></div>
 <ng-template #courseList>
-    <h3>
-        List of Courses
-    </h3>
+  <h3>List of Courses</h3>
 </ng-template>
 
 <ng-template #noCourses>
-    <h3>
-        No Courses
-    </h3>
+  <h3>No Courses</h3>
 </ng-template>
 
 <h1><code>Hidden Attribute</code></h1>
@@ -62,53 +55,123 @@
     hidden property to keep it in the DOM, or hide it, otherwise it's better 
     to use ngIF to remove it from the DOM and free out the resources.
 </p> -->
-<div [hidden] = "courses3.length == 0" class="m-2">
-    <h3>List of Courses</h3>
+<div [hidden]="courses3.length == 0" class="m-2">
+  <h3>List of Courses</h3>
 </div>
-<div [hidden] = "courses3.length > 0" class="m-2">
-    <h3>
-        No courses.
-    </h3>
+<div [hidden]="courses3.length > 0" class="m-2">
+  <h3>No courses.</h3>
 </div>
 
 <h1>
-    <code>ngSwitch Case</code>
+  <code>ngSwitch Case</code>
 </h1>
 <div class="m-4">
-    <ul class="nav nav-pills m-2">
-    <li class="nav-item"><a class="nav-link m-2" [class.active]="viewMode == 'map'" (click)="viewMode = 'map'">Map View</a></li>
-    <li class="nav-item"><a class="nav-link m-2" [class.active]="viewMode == 'list'" (click)="viewMode = 'list'">List view</a></li>
-</ul>
-<div [ngSwitch]='viewMode'>
+  <ul class="nav nav-pills m-2">
+    <li class="nav-item">
+      <a
+        class="nav-link m-2"
+        [class.active]="viewMode == 'map'"
+        (click)="viewMode = 'map'"
+        >Map View</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link m-2"
+        [class.active]="viewMode == 'list'"
+        (click)="viewMode = 'list'"
+        >List view</a
+      >
+    </li>
+  </ul>
+  <div [ngSwitch]="viewMode">
     <h3 *ngSwitchCase="'map'">Map view Content</h3>
     <h3 *ngSwitchCase="'list'">List view Content</h3>
     <h3 *ngSwitchDefault>Otherwise</h3>
-</div>
+  </div>
 </div>
 
 <h1>
-    <code>ngFor directive</code>
+  <code>ngFor directive</code>
 </h1>
 
 <div>
-    <ul>
-        <li *ngFor = "let course of courses;index as i; even as isEven;">
-            <p>{{ i }} - {{ course.name }} <span *ngIf="isEven">(Even)</span></p>
-        </li>
-    </ul>
+  <ul>
+    <li *ngFor="let course of courses; index as i; even as isEven">
+      <p>{{ i }} - {{ course.name }} <span *ngIf="isEven">(Even)</span></p>
+    </li>
+  </ul>
 </div>
 
 <h1>
-    <code>Change detection and ngFor</code>
+  <code>Change detection and ngFor</code>
 </h1>
 <button class="btn btn-primary m-2" (click)="onAdd()">Add course</button>
 <div>
-    <ul>
-        <li *ngFor = "let course of courses;index as i; even as isEven;">
-            <p>{{ i }} - {{ course.name }} <span *ngIf="isEven">(Even)</span></p>
-            <button class="btn btn-danger m-2" (click)="onRemove(course)">Remove course</button>
-            <button class="btn btn-warning m-2" (click)="onChange(course)">Update course</button>
-        </li>
-    </ul>
+  <ul>
+    <li *ngFor="let course of courses; index as i; even as isEven">
+      <p>{{ i }} - {{ course.name }} <span *ngIf="isEven">(Even)</span></p>
+      <button class="btn btn-danger m-2" (click)="onRemove(course)">
+        Remove course
+      </button>
+      <button class="btn btn-warning m-2" (click)="onChange(course)">
+        Update course
+      </button>
+    </li>
+  </ul>
+</div>
+<h1>
+  <code>ngFor and TrackBy</code>
+</h1>
+<!-- 
+    If you're dealing with a simple list, don't worry about the track by feature.
+    You don't need this. Angular performs well out of the box. However, if you're 
+    dealing with a large list with complex markup, and you do observe performance 
+    problems on a given page, you can try using track by to improve the performance
+    of that page. So don't use it by default in every page, because you have
+    to write more code and you won't gain any performance benefits. So use
+    it only when you need to.
+ -->
+<div class="m-2">
+  <button (click)="loadSubjects()" class="btn btn-info">Load Subjects</button>
+</div>
+<div class="m-2">
+  <ul>
+    <li *ngFor="let subject of subjects; trackBy: trackCourses">
+      {{ subject.name }}
+    </li>
+  </ul>
 </div>
 
+<h1>
+  <code>leading * in *ngIf - look at the code</code>
+</h1>
+<div class="m-2">
+  <div *ngIf="courses.length > 0; else noCourses">List of Courses</div>
+</div>
+<!-- What it is doing. -->
+<ng-template [ngIf]="courses.length > 0">
+  <div class="m-2">List of Courses</div>
+</ng-template>
+<ng-template [ngIf]="!(courses.length > 0)">
+  <div class="m-2">No courses present</div>
+</ng-template>
+
+<h1>
+  <code>ngClass</code>
+</h1>
+<span>
+  <i class="bi" [class.bi-star]="!isSelected" (click)="onClick()"></i>
+  <i class="bi" [class.bi-star-fill]="isSelected" (click)="onClick()"></i>
+</span>
+<!-- this ngClass is an example of an attribute directive, we use it to modify 
+    attributes of an existing DOM element.  -->
+<span
+  class="bi"
+  [ngClass]="{
+    'bi-star': isSelected,
+    'bi-star-fill': !isSelected
+  }"
+  (click)="onClick()"
+>
+</span>
