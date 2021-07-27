@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../courses.service';
+import { FavouriteChangesEventArgs } from '../favourite/favourite.component';
+
 
 @Component({
   selector: 'app-courses',
@@ -12,6 +14,10 @@ export class CoursesComponent implements OnInit {
   colspan: number = 2;
   isActive = true;
   email: any;
+  post = {
+    title : "Hello World!!",
+    isFavourite : false,
+  }
   course = {
     title: "The complete Angular Course",
     rating: 4.9745,
@@ -43,6 +49,10 @@ export class CoursesComponent implements OnInit {
 
   onKeyUp2() {
     console.log(this.email);
+  }
+
+  onFavouriteChange(eventArgs: FavouriteChangesEventArgs) {
+    console.log("Favourite changed:",eventArgs);
   }
 
   ngOnInit(): void {

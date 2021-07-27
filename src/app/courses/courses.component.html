@@ -84,3 +84,7 @@
     <!-- Custom Pipes -->
     {{ text | summary:10 }}
 </div>
+
+<div class="m-2">
+    <app-favourite [isFavourite]="post.isFavourite" (change)="onFavouriteChange($event)"></app-favourite>  
+</div>

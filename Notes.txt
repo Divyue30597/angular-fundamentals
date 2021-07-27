@@ -1,0 +1,62 @@
+Angular Notes
+
+Property Bindings:
+	We use property binding with the square binding syntax 
+	to bind properties of DOM objects to fields or properties 
+	in our host component. That is the component that is 
+	using the DOM object. In this case this image object, 
+	another way to think of this is that this source property 
+	is an input into this DOM object we use this to supply data 
+	for this object, to supply some state.
+	
+	<img [src]="imageUrl" />
+	
+Event Bindings:
+	we use event binding to respond to the events raised 
+	from a DOM object. In this case, the click event of a button.
+	
+	<button (click)="onClick()"></button>
+	
+
+<favourite [isFavourite]="post.isFavourite" (change)="onFavouriteChange()"></favourite>
+			<input property needed 			<output property needed 
+			in favourite component>			in favorite component>
+ERROR - can't bind the isFavorite since it isn't a known property of Favorite.
+
+Reason - So this property binding doesn't work. Even though, in favorite 
+		 component we have the field isFavorite and this is a public field. 
+		 Because in Angular templates in order for you to use property 
+		 binding, you need to define that property or that field as an 
+		 input property
+	
+Solution - to add support for event binding and property binding, you need 
+		   to define a special property in this favourite component that 
+		   we refer to as an output and input property.
+		
+		   in order to make a component more reusable, we want to add a 
+		   bunch of input and output properties. We use input properties 
+		   to pass input or stay to a component. And we use output properties 
+		   to raise events from these custom components. The combination of 
+		   input and output properties for a component, make up for what 
+		   we call the public API of that component
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   

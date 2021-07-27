@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-favourite',
@@ -6,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./favourite.component.css']
 })
 export class FavouriteComponent implements OnInit {
-  isFavourite: boolean = false;
+  @Input('isFavourite')
+  isSelected: boolean = false;
+  // isFavourite: boolean = false;
+  // Attaching an alias to property is the best approach since we 
+  // dont have to make any changes while reusing the property. 
+  // isFavourite is changed to isSelected
+  @Output('change')
+  click = new EventEmitter();
+
   onClick() {
-    this.isFavourite = !this.isFavourite;
+    this.isSelected = !this.isSelected;
+    this.click.emit({newValue: this.isSelected});
   }
   constructor() { }
 
@@ -16,3 +26,8 @@ export class FavouriteComponent implements OnInit {
   }
 
 }
+
+export interface FavouriteChangesEventArgs {
+  newValue: Boolean;
+}
+

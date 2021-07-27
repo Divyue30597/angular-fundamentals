@@ -10,6 +10,9 @@ import { CoursesService } from './courses.service';
 import { CoursesComponent } from './courses/courses.component';
 import { SummaryPipe } from './summary.pipe';
 import { FavouriteComponent } from './favourite/favourite.component';
+import { TitleCasingTaskComponent } from './title-casing-task/title-casing-task.component';
+import { TitleCasePipe } from './title-case.pipe';
+import { AngularDirectivesComponent } from './angular-directives/angular-directives.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,9 @@ import { FavouriteComponent } from './favourite/favourite.component';
     CoursesComponent,
     FavouriteComponent,
     SummaryPipe,
-    
+    TitleCasingTaskComponent,
+    TitleCasePipe,
+    AngularDirectivesComponent,
   ],
   imports: [
     BrowserModule,

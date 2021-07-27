@@ -1,0 +1,114 @@
+<!-- 
+    Structuring directives -  modify the structure of the DOM, by adding or 
+                            removing DOM elements. 
+                           - whenever you are using structural directives 
+                            you need to prefix them with an asterisk
+    Attribute directives - modify the attributes of DOM elements.
+ -->
+<h2>First Scenario</h2>
+<div *ngIf = "courses1.length > 0" class="m-2">
+    <!-- here we want to change or modify the structure of our DOM.
+         We want to add or remove one DOM another. 
+    -->
+    <h3>List of Courses</h3>
+</div>
+<div *ngIf = "courses1.length == 0" class="m-2">
+    <h3>
+        No courses.
+    </h3>
+</div>
+
+<h2>Second Scenario</h2>
+
+<div *ngIf = "courses2.length > 0; else noCourses" class="m-2">
+    <h3>
+        List of courses.
+    </h3>
+</div>
+<ng-template #noCourses>
+    <h3>
+        No Courses
+    </h3>
+</ng-template>
+
+<h3><code>Third Scenario</code></h3>
+<div class="m-2" *ngIf = "courses3.length > 0; then courseList else noCourses"></div>
+<ng-template #courseList>
+    <h3>
+        List of Courses
+    </h3>
+</ng-template>
+
+<ng-template #noCourses>
+    <h3>
+        No Courses
+    </h3>
+</ng-template>
+
+<h1><code>Hidden Attribute</code></h1>
+<!-- <h3>Reason to use</h3>
+<p>
+    When we use ngIf on an element, if the condition evaluates to falsey, 
+    that element is removed from the DOM. For as when we use the hidden 
+    attribute, the element is in the DOM it's just hidden.
+    <br>
+    If you're dealing with a large tree with a lot of DOM objects,
+    it's better to use ngIf to free up resources.
+    <br>
+    So in summary, if you're dealing with a small tree of objects, 
+    it doesn't matter which approach you choose it's purely your personal 
+    preference. If you're working with a large tree, first check to see if
+    building that tree is going to be costly or not. If it's costly,use the 
+    hidden property to keep it in the DOM, or hide it, otherwise it's better 
+    to use ngIF to remove it from the DOM and free out the resources.
+</p> -->
+<div [hidden] = "courses3.length == 0" class="m-2">
+    <h3>List of Courses</h3>
+</div>
+<div [hidden] = "courses3.length > 0" class="m-2">
+    <h3>
+        No courses.
+    </h3>
+</div>
+
+<h1>
+    <code>ngSwitch Case</code>
+</h1>
+<div class="m-4">
+    <ul class="nav nav-pills m-2">
+    <li class="nav-item"><a class="nav-link m-2" [class.active]="viewMode == 'map'" (click)="viewMode = 'map'">Map View</a></li>
+    <li class="nav-item"><a class="nav-link m-2" [class.active]="viewMode == 'list'" (click)="viewMode = 'list'">List view</a></li>
+</ul>
+<div [ngSwitch]='viewMode'>
+    <h3 *ngSwitchCase="'map'">Map view Content</h3>
+    <h3 *ngSwitchCase="'list'">List view Content</h3>
+    <h3 *ngSwitchDefault>Otherwise</h3>
+</div>
+</div>
+
+<h1>
+    <code>ngFor directive</code>
+</h1>
+
+<div>
+    <ul>
+        <li *ngFor = "let course of courses;index as i; even as isEven;">
+            <p>{{ i }} - {{ course.name }} <span *ngIf="isEven">(Even)</span></p>
+        </li>
+    </ul>
+</div>
+
+<h1>
+    <code>Change detection and ngFor</code>
+</h1>
+<button class="btn btn-primary m-2" (click)="onAdd()">Add course</button>
+<div>
+    <ul>
+        <li *ngFor = "let course of courses;index as i; even as isEven;">
+            <p>{{ i }} - {{ course.name }} <span *ngIf="isEven">(Even)</span></p>
+            <button class="btn btn-danger m-2" (click)="onRemove(course)">Remove course</button>
+            <button class="btn btn-warning m-2" (click)="onChange(course)">Update course</button>
+        </li>
+    </ul>
+</div>
+
