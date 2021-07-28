@@ -175,3 +175,40 @@
   (click)="onClick()"
 >
 </span>
+
+<h1>
+    <code>ngStyle</code>
+</h1>
+<div class="m-2">
+    <button 
+        [style.backgroundColor]="canSave ? 'blue' : 'gray'"
+        [style.color]="canSave ? 'white' : 'black'"
+        [style.fontWeight]="canSave ? 'bold' : 'normal'">
+        Save
+    </button>
+    <button [ngStyle] = "{
+        'backgroundColor': canSave ? 'blue' : 'gray',
+        'color': canSave ? 'white' : 'black',
+        'fontWeight': canSave ? 'bold' : 'normal'
+    }">
+    Save
+    </button>
+</div>
+
+<!-- Safe traversal Operator -->
+<h1>
+    <code>Safe Traversal Operator</code>
+</h1>
+<h3>Scenario 1</h3>
+<div>
+    <h3>{{task1.assignee.name}}</h3>
+</div>
+<h3>Scenario 2 - in case of null</h3>
+<div>
+    <h3 *ngIf="task2.assignee">{{task1.assignee.name}}</h3>
+    <p>Used *ngIf and name value is null so nothing is shown</p>
+</div>
+<div>
+    <h3>{{task1.assignee?.name}}</h3>
+    <p>Used ? (safe traversal operator) and name value is null so nothing is shown</p>
+</div>

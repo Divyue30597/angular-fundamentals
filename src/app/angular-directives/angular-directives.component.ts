@@ -25,6 +25,21 @@ export class AngularDirectivesComponent implements OnInit {
       {id: 3, name:'subject3'},
     ];
   }
+  canSave: boolean = false;
+  task1 = {
+    title: 'Review Application',
+    assignee: {
+      name: 'John'
+    }
+  }
+
+  task2 = {
+    title: 'Review Application',
+    assignee: {
+      name: null
+    }
+  }
+  
 
   @Input('isFavourite')
   isSelected!: boolean;

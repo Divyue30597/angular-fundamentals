@@ -13,6 +13,8 @@ import { FavouriteComponent } from './favourite/favourite.component';
 import { TitleCasingTaskComponent } from './title-casing-task/title-casing-task.component';
 import { TitleCasePipe } from './title-case.pipe';
 import { AngularDirectivesComponent } from './angular-directives/angular-directives.component';
+import { ZippyComponent } from './zippy/zippy.component';
+import { TemplateDrivenFormsContactComponent } from './template-driven-forms-contact/template-driven-forms-contact.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { AngularDirectivesComponent } from './angular-directives/angular-directi
     TitleCasingTaskComponent,
     TitleCasePipe,
     AngularDirectivesComponent,
+    ZippyComponent,
+    TemplateDrivenFormsContactComponent,
   ],
   imports: [
     BrowserModule,
