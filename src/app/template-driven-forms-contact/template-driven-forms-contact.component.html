@@ -1,11 +1,38 @@
 <form class="form-group" action="">
     <div class="form-group">
         <label for="firstName">First Name</label>
-        <input class="form-control" type="text" id="firstName">
+        <input ngModel name="firstName" #firstName="ngModel" (click)="onLog(firstName)" class="form-control" type="text" id="firstName">
     </div>
     <div class="form-group">
         <label for="comment">Comment</label>
-        <textarea class="form-control" id="comment" cols="30" rows="10"></textarea>
+        <textarea ngClass name="comment" class="form-control" id="comment" cols="30" rows="10"></textarea>
     </div>
     <button class="btn btn-primary mt-2">Save</button>
 </form>
+
+<!-- <input ngModel class="form-control" type="text" id="firstName">
+    Keeping the input tag like this gives the following error.
+    
+    If ngModel is used within a form tag, either the name attribute must be set or the form
+    control must be defined as 'standalone' in ngModelOptions.
+
+    ngModel is an object with these properties. it's an instance of the form control class in Angular.
+
+    We have this dirty, which determines if the value of the input field is changed from the moment
+    the form was initialized. In this case, because I type my name here. 
+    
+    Dirty is true, now the opposite property,is pristine. Pristine is clean. So, dirty should be true, and pristine is false.
+    
+    Invalid, and valid, in this case because we haven't implemented validation yet, this input field is considered valid, so in
+    invalid should be false, and valid should be true. Now if you have any validation errors, they are available here. 
+    Currently errors is null because we don't have any errors.
+    
+    Touched and untouched. In this case, because I touched the input field, or in other words, I put the focus there and 
+    then moved away, touched should be true, and untouched should be false.
+    
+    Value, which returns the current value in the input field
+
+    When we apply the ngModel directive, along with the name attribute input field, Angular automatically creates an instance of 
+    the form control class, and associates it with that field.
+
+-->

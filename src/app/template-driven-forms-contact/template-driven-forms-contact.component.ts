@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateDrivenFormsContactComponent implements OnInit {
 
+  onLog(x){
+    console.log(x);
+  }
   constructor() { }
 
   ngOnInit(): void {
