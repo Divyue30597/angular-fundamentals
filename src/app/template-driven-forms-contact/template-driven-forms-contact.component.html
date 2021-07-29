@@ -1,13 +1,43 @@
-<form class="form-group" action="">
+<form #formName="ngForm" (ngSubmit)="submit(formName)" class="form-group" action="">
     <div class="form-group">
         <label for="firstName">First Name</label>
-        <input ngModel name="firstName" #firstName="ngModel" (click)="onLog(firstName)" class="form-control" type="text" id="firstName">
+        <input required minlength="3" pattern="banana" ngModel name="firstName" #firstName="ngModel"
+            (click)="onLog(firstName)" class="form-control" type="text" id="firstName" />
+        <div class="mt-2 alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+            <div *ngIf="firstName.errors?.required">First Name is required.</div>
+            <div *ngIf="firstName.errors?.minlength">
+                Minimum length is {{ firstName.errors?.minlength?.requiredLength }}.
+            </div>
+            <div *ngIf="firstName.errors?.pattern">Pattern doesn't match.</div>
+        </div>
     </div>
     <div class="form-group">
         <label for="comment">Comment</label>
-        <textarea ngClass name="comment" class="form-control" id="comment" cols="30" rows="10"></textarea>
+        <textarea ngModel name="comment" class="form-control" id="comment" cols="30" rows="10"></textarea>
     </div>
-    <button class="btn btn-primary mt-2">Save</button>
+    <div class="label">
+        <label>
+            <input type="checkbox" ngModel name="isSubscribed">
+        </label>
+        <div class="form-group">
+            <label for="contactMethod">Contact method</label>
+            <select multiple ngModel class="form-control" name="contactMethod" id="contactMethod">
+                <option *ngFor="let method of contactMethod" [ngValue]="method">
+                    {{method.name}}
+                </option>
+            </select>
+        </div>
+        <div *ngFor="let method of contactMethod" class="form-group">
+            <label>
+                <input ngModel type="radio" name="contactMethods" [value]="method.id">
+                {{method.name}}
+            </label>
+        </div>
+        <p>
+            {{ formName.value | json }}
+        </p>
+    </div>
+    <button class="btn btn-primary mt-2" [disabled]="!formName.valid">Save</button>
 </form>
 
 <!-- <input ngModel class="form-control" type="text" id="firstName">

@@ -15,6 +15,7 @@ import { TitleCasePipe } from './title-case.pipe';
 import { AngularDirectivesComponent } from './angular-directives/angular-directives.component';
 import { ZippyComponent } from './zippy/zippy.component';
 import { TemplateDrivenFormsContactComponent } from './template-driven-forms-contact/template-driven-forms-contact.component';
+import { SignupFormComponent } from './signup-form/signup-form.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { TemplateDrivenFormsContactComponent } from './template-driven-forms-con
     AngularDirectivesComponent,
     ZippyComponent,
     TemplateDrivenFormsContactComponent,
+    SignupFormComponent
   ],
   imports: [
     BrowserModule,

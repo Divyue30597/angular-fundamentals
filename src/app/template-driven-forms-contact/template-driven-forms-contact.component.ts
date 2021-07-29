@@ -7,6 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateDrivenFormsContactComponent implements OnInit {
 
+  contactMethod = [
+    { id: 1, name: 'Email' },
+    { id: 2, name: 'Phone' },
+  ]
+
+  submit(form) {
+    console.log(form);
+  }
+
   onLog(x){
     console.log(x);
   }
