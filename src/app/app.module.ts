@@ -16,6 +16,7 @@ import { AngularDirectivesComponent } from './angular-directives/angular-directi
 import { ZippyComponent } from './zippy/zippy.component';
 import { TemplateDrivenFormsContactComponent } from './template-driven-forms-contact/template-driven-forms-contact.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
+import { CourseFormComponent } from './course-form/course-form.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
     AngularDirectivesComponent,
     ZippyComponent,
     TemplateDrivenFormsContactComponent,
-    SignupFormComponent
+    SignupFormComponent,
+    CourseFormComponent
   ],
   imports: [
     BrowserModule,
